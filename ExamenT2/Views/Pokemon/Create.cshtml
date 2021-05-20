@@ -1,0 +1,23 @@
+﻿<form action="/Pokemon/Create" enctype="multipart/form-data" method="post">
+    <div class="form-group">
+        <label class="control-label">Nombre</label>
+        <input type="text" name="Nombre" />
+    </div>
+    <div class="form-group">
+        <label class="control-label">Tipo de pokemon</label>
+        <select name="TipoId">
+            <option value="">--Selecciona tipo--</option>
+            @foreach (var item in ViewBag.tipos)
+            {
+
+                <option value="@item.Id">@item.Tipo_nombre</option>
+
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Insertar Imagen</label>
+        <input type="file" name="file" />
+    </div>
+    <button class="btn-primary">Guardar</button>
+</form>

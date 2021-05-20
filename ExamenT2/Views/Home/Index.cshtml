@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<section class="content">
+   
+    <form method="post" action="/capturar/capturar">
+        @if (User.Identity.IsAuthenticated)
+        {
+            <button>Ver pokemones capturados</button>
+        }
+        </form>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Tipo</th>
+                <th>Imagen</th>
+            </tr>
+
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+
+            <tr>
+                <td>@item.Nombre</td>
+                <td>@item.tipo.Tipo_nombre</td>
+                <td><img src="@item.Imagen" style="width:70px;height:90px" />  </td>
+                <td>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                    <form method="post" action="/capturar/create">
+                        <input type="hidden" name="PokemonId" value="@item.Id" />
+                        <button>Capturar</button>
+                    </form>
+                           
+                    }
+
+                    </td>
+                   
+                </tr>
+            }
+        </tbody>
+    </table>
+    @*<form action="/pokemon/create" method="post">
+        <button>Crear</button>
+    </form>*@
+    </section>
+
